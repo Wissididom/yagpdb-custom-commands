@@ -16,7 +16,7 @@ Value: `(?:https?:\/\/)?(?:www\.)?(?:discord\.(?:gg|io|me|li)|discord(?:app)?\.c
     {{$violations = (toInt64 $dbViolations.Value)}}
 {{end}}
 {{$violations = toInt64 (add $violations 1)}}
-{{if ge $violations $allowedViolations}}
+{{if gt $violations $allowedViolations}}
     {{deleteTrigger 0}}
     {{sendDM $dmMessage}}
     {{dbDel .User.ID "violations"}}
